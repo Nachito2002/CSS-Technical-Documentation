@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="css.ico" type="image/x-icon">
+    <title>Documentacion CSS</title>
+</head>
+<body>
+    <nav id="navbar">
+        <header id="nav-header">
+            <h1 id="header">Documentacion CSS</h1>
+        </header>
+        <ul class="nav-list">
+            <li class="list-item"><a href="#efecto_cascada" class="nav-link">Efecto cascada</a></li>
+            <li class="list-item"><a href="#selectores" class="nav-link">Selectores</a></li>
+            <li class="list-item"><a href="#comentarios" class="nav-link">Comentarios</a></li>
+            <li class="list-item"><a href="#variables" class="nav-link">Variables</a></li>
+            <li class="list-item"><a href="#media_queries" class="nav-link">Media queries</a></li>
+            <li class="list-item"><a href="#unidades" class="nav-link">Unidades</a></li>
+            <li class="list-item"><a href="#posiciones" class="nav-link">Posiciones</a></li>
+            <li class="list-item"><a href="#accesibilidad" class="nav-link">Accesibilidad</a></li>
+            <li class="list-item"><a href="#principios_de_diseño_receptivo" class="nav-link">Principios de diseño receptivo</a></li>
+        </ul>
+    </nav>
+    <main id="main-doc">
+        <section class="main-section" id="efecto_cascada">
+            <header class="main-header">
+                <h2 class="title">Efecto cascada</h2>
+            </header>
+            <p class="text">Cuando damos estilo a un elemento HTML, este se aplicará al elemento indicado pero también será heredado por su contenido, a no ser que otra regla o selector sobreescriba el estilo para alguno de los hijos.</p>
+            <p class="text">El estilo se puede dar inline mediante el atributo style o con selectores, los cuales se pueden colocar dentro de la etiqueta style o en una hoja CSS referenciada dentro del head.</p>
+        </section>
+
+        <section class="main-section" id="selectores">
+            <header class="main-header">
+                <h2 class="title">Selectores</h2>
+            </header>
+            <p class="text">Un selector es un conjunto de reglas de estilos aplicadas múltiples elementos de la hoja html. En lugar de aplicar el estilo elemento por elemento, lo aplicamos de manera global.</p>
+            <h3 class="title3">Principales tipos de selectores</h3>
+            <h4 class="title4">Id</h4>
+            <p class="text">Se define mediante una # justo antes del nombre de la id. Las reglas de estilo que contiene se aplican al elemento que tenga la id indicada.</p>
+            <pre class="code"><code>#id{
+    /* Estilos */
+}</code></pre>
+            <h4 class="title4">Clase</h4>
+            <p class="text">Se define mediante un . justo antes del nombre de la clase. Las reglas de estilo que contiene se aplican a cualquier elemento que tenga la clase indicada. Debido a que un elemento puede tener varias clases, también puede recibir estilo de varios selectores de clase.  
+            </p>
+            <pre class="code"><code>.clase{
+    /* Estilos */
+}</code></pre>
+            <h4 class="title4">Elemento</h4>
+            <p class="text">Aplica estilo a todos los elementos que tengan la etiqueta html indicada. Por ejemplo, un selector del elemento div aplicaría estilos a todos los div.</p>
+            <pre class="code"><code>div{
+    /* Estilos */
+}</code></pre>
+            <ul class="list">
+                <li class="item-list">En caso de contradicción entre selectores, se aplicarán esta jerarquía de prioridad: !important > inline style > ids > clases > elementos.</li>
+                <li class="item-list">En caso de igual importancia entre selectores que se contradicen, los últimos en haber sido escritos tendrán prioridad.</li>
+                <li class="item-list">La aplicación de estilos inline se penaliza en SEO.</li>
+            </ul>
+        </section>
+
+        <section class="main-section" id="comentarios">
+            <header class="main-header">
+                <h2 class="title">Comentarios</h2>
+            </header>
+                <p class="text"><em>/* Contenido del comentario */</em></p>
+        </section>
+
+        <section class="main-section" id="variables">
+            <header class="main-header">
+                <h2 class="title">Variables</h2>
+            </header>
+            <p class="text"><strong>Declaración y asignación:</strong> --nombrevariable: value;</p>
+            <p class="text"><strong>Utilización: propiedad:</strong> var(--nombrevariable, fallback);</p>
+            <ul class="list">
+                <li class="item-list">El fallback no es necesario. Se utiliza para que el navegador tenga un respaldo en caso de que la variable sea inválida. Es útil para debuggear.</li>
+                <li class="item-list">Otra manera de hacer respaldos es poner la misma propiedad justo antes con un valor con más soporte (aprovechando que, en caso de igual importancia, la prioridad va de abajo hacia arriba).</li>
+            </ul>
+            <p class="text">Las variables en CSS también tienen efecto cascada. Por tanto, son utilizables dentro del elemento en el que han sido creadas y de cualquiera de los elementos que estén anidados dentro. Por esto, las variables CSS suelen declararse en la pseudoclase :root (contenedor de todo el documento .html).</p>
+            <p class="text">Las variables se pueden sobreescribir volviéndolas a declarar dentro de elementos más específicos que aquel en el que fueran declaradas por primera vez.
+            </p>
+        </section>
+
+        <section class="main-section" id="media_queries">
+            <header class="main-header">
+                <h2 class="title">Media queries</h2>
+            </header>
+            <p class="text">Permiten cambiar los valores de las reglas de un selector en función del tamaño del viewport. Se utilizan para hacer contenido adaptativo. También pueden alterar el valor de las variables.</p>
+            <pre class="code"><code>@media (max-width: 350px) {
+    :root {
+    --penguin-size: 200px;
+    }
+    p {
+    color: red;
+    }
+}</code></pre>
+            <p class="text">Esta media querie se activaría si el ancho del viewport es menor o igual a 350 píxeles.</p>
+        </section>
+
+        <section class="main-section" id="unidades">
+            <header class="main-header">
+                <h2 class="title">Unidades</h2>
+            </header>
+            <h3 class="title3">Unidades absolutas</h3>
+            <ul class="list">
+                <li class="item-list"><strong>px:</strong> pixeles.</li>
+                <li class="item-list"><strong>%:</strong> porcentaje respecto al elemento padre.</li>
+            </ul>
+            <h3 class="title3">Unidades relativas</h3>
+            <ul class="list">
+                <li class="item-list"><strong>em:</strong> cambia el tamaño de un elemento con un multiplicador al tamaño de la fuente de ese mismo elemento, por lo que si el tamaño de la fuente cambia, el resultado de esta unidad también. Si se cambia font-size con em, se calculará en función del tamaño de la fuente del padre.</li>
+                <li class="item-list"><strong>vw:</strong> 10vw representan el 10% del ancho del viewport.</li>
+                <li class="item-list"><strong>vh:</strong> 3vh representan el 3% del alto del viewport.</li>
+                <li class="item-list"><strong>vmin:</strong> 70vmin representan el 70% de la dimensión más pequeña (ancho o alto).</li>
+                <li class="item-list"><strong>vmax:</strong> 100vmax representan el 100% de la dimensión más grande (ancho o alto).</li>
+            </ul>
+            <p class="text">Se pueden poner margin y padding negativos.</p>
+            <p class="text">En los atributos en los que se pueda cambiar el valor de los cuatro lados del elemento, los valores se introducen en sentido de las agujas del reloj empezando por top.</p>
+            <p class="text">#RRGGBB se puede abreviar a #RGB. El navegador lo traducirá automáticamente. Por ejemplo, #FF0000 (rojo) se puede traducir a #F00.</p>
+        </section>
+
+        <section class="main-section" id="posiciones">
+            <header class="main-header">
+                <h2 class="title">Posiciones</h2>
+            </header>
+            <ul class="list">
+                <li class="item-list"><strong>position: relative;</strong> reposiciona el elemento respecto a su posición dentro del flujo normal. Su posición real dentro del flujo normal no cambia, por lo que otros elementos lo tratan como si estuviera en su posición por defecto.
+                    <ul class="sub-list">
+                    <li class="sub-item-list">Se aprovecha con las propiedades left, right, top y bottom para indicar el offset visual que tiene que tener en píxeles, porcentajes o ems.</li>
+                    <li class="sub-item-list">Con reposicionamiento o sin él, el html tiene que mantener sentido cuando se lee de arriba a abajo por razones de SEO y para gente con visibilidad impedida.</li>
+                    </ul>
+                </li>
+                <li class="item-list"><strong>position: absolute;</strong> mueve el elemento en relación a su contenedor. Al contrario que relative, esto saca al elemento del flujo normal, de manera que otros a su alrededor dejarán de respetar el espacio que ocuparía normalmente.
+                    <ul class="sub-list">
+                        <li class="sub-item-list">La posición será respecto al primer padre que tenga una propiedad position definida.</li>
+                        <li class="sub-item-list">También utiliza las propiedades left, right, top y bottom para reposicionarse.</li>
+                    </ul>
+                </li>
+                <li class="item-list"><strong>position: fixed;</strong> se comporta igual que absolute, pero se reposiciona en relación a la ventana del navegador. Por tanto, nunca cambia de posición dentro de esta a pesar de que el usuario haga scroll.</li>
+                <li class="item-list"><strong>float: left/right;</strong> saca al elemento del flujo normal y lo empuja a la izquierda o la derecha dentro de su contenedor. Normalmente se usa en conjunto con width para indicar cuánto espacio horizontal debe ocupar.</li>
+                <li class="item-list"><strong>z-index: xxx;</strong> por defecto, cuando varios elementos se superponen, la prioridad en el eje Z va de abajo hacia arriba al leer el documento. Z-index cambia a la fuerza la prioridad en el eje Z. Cuanto mayor sea el valor en z-index, mayor será su prioridad.</li>
+                <li class="item-list"><strong>border-sizing:</strong> controla si width y height se aplican sobre el contenido o sobre todo.
+                    <ul class="sub-list">
+                        <li class="sub-item-list"><strong>content-box:</strong> valor por defecto. Width y height se aplican sobre el contenido.</li>
+                        <li class="sub-item-list"><strong>border-box:</strong> width y height se aplican sobre contenido+padding+border.</li>
+                    </ul>
+                </li>
+            </ul>
+        </section>
+
+        <section class="main-section" id="accesibilidad">
+            <header class="main-header">
+                <h2 class="title">Accesibilidad</h2>
+            </header>
+            <h3 class="title3">Elementos visibles sólo para lectores de pantalla</h3>
+            <p class="text">Esto es útil para mantener elementos que son útiles para el lector de pantalla pero que no queremos que sean visibles para la mayoría de usuarios, como por ejemplo el h1.</p>
+            <pre class="code"><code>.sr-only {
+    position: absolute;
+    left: -10000px;
+    width: 1px;
+    height: 1px;
+    top: auto;
+    overflow: hidden;
+}</code></pre>
+            <h3 class="title3">Ratio de contraste y daltonismo</h3>
+            <p class="text">Las WCAG recomiendan que el ratio de contraste de texto respecto a fondo sea de por lo menos 4,5:1.</p>
+            <p class="text">Se debe evitar destacar texto exclusivamente mediante tono mientras se mantienen saturación o luminosidad similares a las del contenido que lo rodea, o diferenciar fondo de primer plano sólo por luminosidad o saturación (sin cambiar o cambiando poco el tono).</p>
+        </section>
+
+        <section class="main-section" id="principios_de_diseño_receptivo">
+            <header class="main-header">
+                <h2 class="title">Principios de diseño receptivo</h2>
+            </header>
+            <h3 class="title3">Imagenes adaptativas</h3>
+            <pre class="code"><code>img {
+    transform-origin: left top;
+    transform: scale(0.5);
+    max-width: 100%;
+    height: auto;
+    display: block;
+}</code></pre>
+            <h3 class="title3">Botones</h3>
+            <pre class="code"><code>a:link, a:visited {
+    background-color: #f44336;
+    color: white;
+    padding: 15px 25px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+}
+a:hover, a:active {
+    background-color: red;
+}</code></pre>
+            <h3 class="title3">Texto adaptativo</h3>
+            <p class="text">En lugar de usar em o px para dar tamaño al texto, se pueden utilizar unidades de viewport (vw, vh, vmin ó vmax) para crear texto adaptativo.</p>
+        </section>
+    </main>
+</body>
+</html>
